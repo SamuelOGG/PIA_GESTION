@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket de Reservación</title>
+    <link rel="stylesheet" href="{% static 'ticket.css' %}">
+</head>
+<body>
+    <div class="ticket-container">
+        <h1>Ticket de Reservación</h1>
+        <h2>Detalles de la Reservación:</h2>
+        <p><strong>Nombre:</strong> {{ reserva.Nombre }} {{ reserva.Apellidos }}</p>
+        <p><strong>Correo:</strong> {{ reserva.Correo }}</p>
+        <p><strong>Teléfono:</strong> {{ reserva.Telefono }}</p>
+        <p><strong>Número de Personas:</strong> {{ reserva.NoPersonas }}</p>
+        <p><strong>Fecha:</strong> {{ reserva.FechaReserva }}</p>
+        <p><strong>Hora:</strong> {{ reserva.HoraReserva }}</p>
+        <p><strong>Código Único:</strong> {{ reserva.codigo_unico }}</p>
+    </div>
+</body>
+</html>
+

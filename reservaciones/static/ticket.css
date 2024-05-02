@@ -1,0 +1,50 @@
+body {
+    background-image: linear-gradient(100deg, #000000, #00000020), url('banner.jpg');
+    height: 100vh; /* Cambia a altura en viewport (vh) para adaptarse mejor a diferentes tamaños de pantalla */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.ticket-container {
+    max-width: 90%; /* Cambia el ancho máximo a un porcentaje para que sea más flexible */
+    width: 300px; /* Define un ancho fijo para el contenedor en dispositivos de escritorio */
+    margin: 50px auto;
+    border: 2px solid #333;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 0;
+}
+
+p {
+    margin: 10;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.qr-code {
+    margin-top: 20px;
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .ticket-container {
+        width: 70%; /* Ajusta el ancho del contenedor al 90% del ancho de la pantalla en dispositivos móviles */
+    }
+}
+

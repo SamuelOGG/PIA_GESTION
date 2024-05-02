@@ -1,0 +1,548 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL RINCÓN DE LAS BRASAS</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+	<script src="{% static 'js/index.js' %}"></script>
+</head>
+	<body>
+		<header>
+			<div class="container-hero">
+				<div class="container hero">
+					<div class="container-logo">
+						<i class="fa-solid fa-utensils"></i>
+						<h1 class="logo"><a href="/">El Rincón de las Brasas</a></h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="container-navbar">
+				<nav class="navbar container">
+					<i class="fa-solid fa-bars"></i>
+					<ul class="menu">
+						<li><a href="#Menu">Menu</a></li>
+						<li id="Reserva" onclick="toggleBarraLateral()"><a href="#Res">Reservacion</a></li>
+						<li><a href="#Ubicacion">Ubicacion</a></li>
+						<li><a href="#Contacto">Contacto</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+{% comment %} 		BARRA LATERAL	 {% endcomment %}
+		<div class="barra-lateral">
+			<span class="cerrar-icono" onclick="cerrarBarraLateral()">&times;</span>
+			<div class="nombre-pagina">
+				<ion-icon id="cloud" name="cloud-outline"></ion-icon>
+				<span>RESERVACIONES</span>
+			</div>
+			<div>
+				<form action="{% url 'reservar' %}" method="post">{% csrf_token %}
+					<label for="nombre">Nombre:</label>
+					<input type="text" id="nombre" name="nombre" required>
+
+					<label for="apellidos">Apellidos:</label>
+					<input type="text" id="apellidos" name="apellidos" required>
+
+					<label for="correo">Correo Electrónico:</label>
+					<input type="email" id="correo" name="correo" required>
+
+					<label for="telefono">Teléfono:</label>
+					<input type="tel" id="telefono" name="telefono" required>
+
+					<label for="cantidad_personas">Cantidad de Personas:</label>
+					<input type="number" id="cantidad_personas" name="cantidad_personas" min="1" required>
+
+					<label for="fecha">Fecha de Reservación:</label>
+					<input type="date" id="fecha" name="fecha" required>
+
+					<label for="hora">Hora:</label>
+					<input type="time" id="hora" name="hora" required>
+
+					<input type="submit" value="Reservar">
+				</form>
+			</div>
+		</div>
+
+
+		<section class="banner">
+			<div class="content-banner">
+				<p>Cortes de carne Deliciosos</p>
+				<h2>¡Descubre el sabor auténtico al 100%<br />en nuestro restaurante de carne!</h2>
+				<li id="Reserva" onclick="toggleBarraLateral()"><a href="#Res">Reservacion</a></li>
+			</div>
+		</section>
+		
+		<main class="main-content">
+			br
+			<section class="container top-categories">
+				<h1 class="heading-1">Categorías</h1>
+				<div class="container-categories">
+					<div class="card-category category-entradas">
+						<p>Entradas</p>
+						<a href="#Entradas">Ver más</a>
+					</div>
+					<div class="card-category category-comidas">
+						<p>Comidas</p>
+						<a href="#Comidas">Ver más</a>
+					</div>
+					<div class="card-category category-bebidas">
+						<p>Bebidas</p>
+						<a href="#Bebidas">Ver más</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="container top-products">
+				<h1 class="heading-1">Lo mejor del día</h1>
+			
+				<div class="container-options">
+					<ul class="productos">
+						<li id="option1" class="option option-active">Entradas</li>
+						<li id="option2" class="option">Comidas</li>
+						<li id="option3" class="option">Bebidas</li>
+					</ul>
+				</div>
+			
+				<div id="tabContentOption1" class="tab-content content-active">
+					<div class="container-products">
+						<!-- Producto 1 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Entradas1.jpg" alt="Queso papa" />
+							</div>
+							<div class="content-card-product">
+								<h3>Queso papa</h3>
+								<p class="price">$149</p>
+							</div>
+						</div>
+						<!-- Producto 2 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Entradas2.jpg" alt="Alitas a la parrilla" />
+							</div>
+							<div class="content-card-product">
+								<h3>Alitas a la parrilla</h3>
+								<p class="price">$169</p>
+							</div>
+						</div>
+						<!-- Producto 3 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Entradas4.jpg" alt="Lechón NG" />
+							</div>
+							<div class="content-card-product">
+								<h3>Lechón NG</h3>
+								<p class="price">$295</p>
+							</div>
+						</div>
+						<!-- Producto 4 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Entradas5.jpg" alt="Acostadito de arrachera" />
+							</div>
+							<div class="content-card-product">
+								<h3>Acostadito de arrachera</h3>
+								<p class="price">$235</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div id="tabContentOption2" class="tab-content">
+					<div class="container-products">
+						<!-- Producto 1 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Comidas1.jpg" alt="Ajugas norteñas" />
+							</div>
+							<div class="content-card-product">
+								<h3>Ajugas norteñas</h3>
+								<p class="price">$550</p>
+							</div>
+						</div>
+						<!-- Producto 2 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Comidas3.jpg" alt="New York" />
+							</div>
+							<div class="content-card-product">
+								<h3>New York</h3>
+								<p class="price">$650</p>
+							</div>
+						</div>
+						<!-- Producto 3 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Comidas4.jpg" alt="Rib Eye Cowboy" />
+							</div>
+							<div class="content-card-product">
+								<h3>Rib Eye Cowboy</h3>
+								<p class="price">$690</p>
+							</div>
+						</div>
+						<!-- Producto 4 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Comidas5.jpg" alt="Picaña" />
+							</div>
+							<div class="content-card-product">
+								<h3>Picaña</h3>
+								<p class="price">$580</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div id="tabContentOption3" class="tab-content">
+					<div class="container-products">
+						<!-- Producto 1 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Bebidas.jpg" alt="Jarras de agua" />
+							</div>
+							<div class="content-card-product">
+								<h3>Jarras de agua</h3>
+								<p class="price">$79 el litro</p>
+							</div>
+						</div>
+						<!-- Producto 2 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Bebidas2.jpg" alt="Refrescos" />
+							</div>
+							<div class="content-card-product">
+								<h3>Refrescos</h3>
+								<p class="price"> $30 variedad</p>
+							</div>
+						</div>
+						<!-- Producto 3 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Bebidas4.png" alt="Margacheve" />
+							</div>
+							<div class="content-card-product">
+								<h3>Margacheve</h3>
+								<p class="price">$130</p>
+							</div>
+						</div>
+						<!-- Producto 4 -->
+						<div class="card-product">
+							<div class="container-img">
+								<img src="static/img/Bebidas5.jpg" alt="Ocean NG" />
+							</div>
+							<div class="content-card-product">
+								<h3>Ocean NG</h3>
+								<p class="price">$120</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- MENU -->
+			<section id="Menu" class="container Menu">
+				<div class="container-Menu"><h1 class="heading-1">Menu</h1></div>
+				<div>
+					<h1 id= "Entradas" class="heading-2">Entradas</h1>
+					<div class="container-menu">
+						<!-- Producto 1 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Entradas.jpg" alt="Entradas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Botana surtida: chicharrón en salsa verde, frijoles con queso panela, asado de puerco, sirlon en salsa, queso con chorizo y guacamole. $295</h3>
+								<p class="price1">Botana surtida</p>
+							</div>
+						</div>
+						<!-- Producto 2 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Entradas1.jpg" alt="Entradas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Queso papa horneado en mezcla de queso con carne asada. $149</h3>
+								<p class="price1">Queso papa</p>
+							</div>
+						</div>
+						<!-- Producto 3 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Entradas2.jpg" alt="Entradas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Alitas a la parrilla en salsa inolvidable y papas a la francesa. $169</h3>
+								<p class="price1">Alitas a la parrilla</p>
+							</div>
+						</div>
+						<!-- Producto 4 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Entradas3.jpg" alt="Entradas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Gorditas rellenas de carne asada y queso panela con toque de salsa de 4 chiles. $139</h3>
+								<p class="price1">Gorditas rellenas</p>
+							</div>
+						</div>
+						<!-- Producto 5 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Entradas4.jpg" alt="Entradas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Lechón NG: jugosa porcion de lechón horneado en cocción lenta lista para taquear. $295</h3>
+								<p class="price1">Lechón NG</p>
+							</div>
+						</div>
+						<!-- Producto 6 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Entradas5.jpg" alt="Entradas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Acostadito de arrachera bañado con vinagreta de piquin. $235</h3>
+								<p class="price1">Acostadito de arrachera</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h1 id="Comidas" class="heading-2">Comidas</h1>
+					<div class="container-menu">
+						<!-- Producto 1 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Comidas.jpg" alt="Comidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Mix de carne asada (250g) y pechuga adobada (250g). $350</h3>
+								<p class="price1">Mix de carne asada y pechuga adobada</p>
+							</div>
+						</div>
+						<!-- Producto 2 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Comidas1.jpg" alt="Comidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Ajugas norteñas (700g) con la jugosidad caracteristica de la region. $550</h3>
+								<p class="price1">Ajugas norteñas</p>
+							</div>
+						</div>
+						<!-- Producto 3 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Comidas2.jpg" alt="Comidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Diezmillo (500g) bañado de queso fundido en tu mesa. $450</h3>
+								<p class="price1">Diezmillo</p>
+							</div>
+						</div>
+						<!-- Producto 4 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Comidas3.jpg" alt="Comidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>New York (600g) en cocción lenta acompañado de chorizo español. $650</h3>
+								<p class="price1">New York</p>
+							</div>
+						</div>
+						<!-- Producto 5 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Comidas4.jpg" alt="Comidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Rib Eye Cowboy (600g) flameado al tequila en cama de tuétanos y chistorra. $690</h3>
+								<p class="price1">Rib Eye Cowboy</p>
+							</div>
+						</div>
+						<!-- Producto 6 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Comidas5.jpg" alt="Comidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Picaña (500g) en costra de rub de cafe. $580</h3>
+								<p class="price1">Picaña</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h1 id="Bebidas" class="heading-2">Bebidas</h1>
+					<div class="container-menu">
+						<!-- Producto 1 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Bebidas.jpg" alt="Bebidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Piña con menta, Pepino Limón o Mango y Dragon Fruti mineralizada. 1 litro. $79</h3>
+								<p class="price1">Jarras de agua</p>
+							</div>
+						</div>
+						<!-- Producto 2 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Bebidas2.jpg" alt="Bebidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Heineken 00, Tecate Ligth, Indio, Carta Blanca, Tecate Original 250ml y 355ml. $45</h3>
+								<p class="price1">Cervezas</p>
+							</div>
+						</div>
+						<!-- Producto 3 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Bebidas3.jpg" alt="Bebidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Variedad de refrescos. $30</h3>
+								<p class="price1">Refrescos</p>
+							</div>
+						</div>
+						<!-- Producto 4 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Bebidas4.png" alt="Bebidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Combinación de margarita de mango o limón y cerveza. $130</h3>
+								<p class="price1">Margacheve</p>
+							</div>
+						</div>
+						<!-- Producto 5 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Bebidas5.jpg" alt="Bebidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Bacardi, Ron malibu, con toques de blueberries y soda. $120</h3>
+								<p class="price1">Ocean NG</p>
+							</div>
+						</div>
+						<!-- Producto 6 -->
+						<div class="card-Menu">
+							<div class="container-img1">
+								<img src="static/img/Bebidas6.jpg" alt="Bebidas"/>
+							</div>
+							<div class="content-card-Menu">
+								<h3>Tequila, sangria y refresco de toronja. $99</h3>
+								<p class="price1">Vampiro</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<h1 id="Ubicacion" class="heading-3">Ubicacion</h1>
+			<section class="container blogs">
+				<div class="containerubi">
+					<div class="content">
+						<h1>Sucursales disponibles</h1>
+						<p>Actualmente, contamos con una única sucursal ubicada en Monterrey, Nuevo León. Estamos en Av. Gonzalitos, donde ofrecemos una amplia gama de servicios y productos para repostería.</p>
+					</div>
+					<div class="location">
+						<h1>¡Encuéntranos aquí!</h1>
+						<div class="map-container">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8551.8750988405!2d-100.35520278601483!3d25.68387008849839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866295f9fe2c8eab%3A0x9cd8b82fadc13d30!2sReposteria%20Fina%20de%20Lili!5e0!3m2!1ses!2smx!4v1684297083842!5m2!1ses!2smx" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</div>
+					</div>
+				</div>				
+			</section>
+		</main>
+
+		<footer id= "Contacto" class="footer">
+			<div class="container container-footer">
+				<div class="menu-footer">
+					<div class="contact-info">
+						<p class="title-footer">Información de Contacto</p>
+						<ul>
+							<li>
+								Dirección: 71 Pennington Lane Vernon Rockville, CT
+								06066
+							</li>
+							<li>Teléfono: 123-456-7890</li>
+							<li>Fax: 55555300</li>
+							<li>EmaiL: baristas@support.com</li>
+						</ul>
+						<div class="social-icons">
+							<span class="facebook">
+								<i class="fa-brands fa-facebook-f"></i>
+							</span>
+							<span class="twitter">
+								<i class="fa-brands fa-twitter"></i>
+							</span>
+							<span class="youtube">
+								<i class="fa-brands fa-youtube"></i>
+							</span>
+							<span class="pinterest">
+								<i class="fa-brands fa-pinterest-p"></i>
+							</span>
+							<span class="instagram">
+								<i class="fa-brands fa-instagram"></i>
+							</span>
+						</div>
+					</div>
+
+					<div class="information">
+						<p class="title-footer">Información</p>
+						<ul>
+							<li><a href="#">Acerca de Nosotros</a></li>
+							<li><a href="#">Información Delivery</a></li>
+							<li><a href="#">Politicas de Privacidad</a></li>
+							<li><a href="#">Términos y condiciones</a></li>
+							<li><a href="#">Contactános</a></li>
+						</ul>
+					</div>
+
+					<div class="my-account">
+						<p class="title-footer">Mi cuenta</p>
+
+						<ul>
+							<li><a href="#">Mi cuenta</a></li>
+							<li><a href="#">Historial de ordenes</a></li>
+							<li><a href="#">Lista de deseos</a></li>
+							<li><a href="#">Boletín</a></li>
+							<li><a href="#">Reembolsos</a></li>
+						</ul>
+					</div>
+
+					<div class="newsletter">
+						<p class="title-footer">Boletín informativo</p>
+
+						<div class="content">
+							<p>
+								Suscríbete a nuestros boletines ahora y mantente al
+								día con nuevas colecciones y ofertas exclusivas.
+							</p>
+							<input type="email" placeholder="Ingresa el correo aquí...">
+							<button>Suscríbete</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="copyright">
+					<p>
+						Desarrollado por Programación para el mundo &copy; 2022
+					</p>
+
+				{% comment %} 	<img src="img/payment.png" alt="Pagos"> {% endcomment %}
+				</div>
+			</div>
+		</footer>
+
+		<script
+			src="https://kit.fontawesome.com/81581fb069.js"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>
